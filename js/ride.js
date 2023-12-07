@@ -82,8 +82,8 @@ let map;
     function getWeather(pickupLocation) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
-
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`+process.env.API_KEY)
+        var url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`+process.env.API_KEY;
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
