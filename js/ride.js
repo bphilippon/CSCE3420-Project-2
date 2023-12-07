@@ -83,7 +83,7 @@ let map;
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b63b058240bd999ab442c2e4c79970e6`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=`+process.env.API_KEY)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
