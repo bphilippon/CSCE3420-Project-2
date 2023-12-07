@@ -55,7 +55,8 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        getWeather(pickupLocation, unicorn)
+        getWeather(pickupLocation)
+        getKanye();
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -78,7 +79,7 @@ let map;
         }
     }
      */
-    function getWeather(pickupLocation, unicorn) {
+    function getWeather(pickupLocation) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
 
@@ -120,6 +121,16 @@ let map;
 
         //     displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
         // })
+    }
+
+    function getKanye() {
+        var quote = "";
+        fetch("https://api.kanye.rest")
+            .then(response => quote = response)
+        
+        var innerHTML = "Here is the Kanye quote of the day: ";
+        innerHTML += quote;
+        displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "gray");
     }
 
     // Register click handler for #request button
