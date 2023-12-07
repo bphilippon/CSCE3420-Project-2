@@ -55,7 +55,7 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        getWeather(pickupLocation, unicorn)
+        getWeather(pickupLocation);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -66,19 +66,7 @@ let map;
         });
     }
 
-    /*
-    function sizzle(loc) {
-        let siz = document.querySelector("#siz").value;
-        let search = siz.substring(siz.indexOf(':')+1);
-        siz = siz.substring(0, siz.indexOf(':'));
-        switch (siz) {
-            case "weather" : weather(search, loc); break;
-            case "apod" : NASA(search); break;
-            case "movies" : movies(search); break ;
-        }
-    }
-     */
-    function getWeather(pickupLocation, unicorn) {
+    function getWeather(pickupLocation) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
 
