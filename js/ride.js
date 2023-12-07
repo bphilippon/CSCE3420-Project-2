@@ -72,8 +72,8 @@ let map;
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b63b058240bd999ab442c2e4c79970e6`)
             .then(response => response.json())
-            .then(log => console.log(log))
             .then(data => {
+                console.log(data);
                 var cityName = data['name'];
                 var weather = data['weather'];  //basic weather
                 var main = data['main'];    //complex weather
