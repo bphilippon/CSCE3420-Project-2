@@ -92,11 +92,11 @@ let map;
                 var cloudPercent = data['clouds'];
                 let innerHTML = "";
                 switch(weather['main']){
-                    case "Thunderstorm":
-                    case "Drizzle":
-                    case "Rain": innerHTML += "Pack an umbrella. "; break;
-                    case "Clouds": innerHTML += "Aw man... "; break;
-                    case "Clear": innerHTML += "What a beautiful day! "; break;
+                    case 'Thunderstorm':
+                    case 'Drizzle':
+                    case 'Rain': innerHTML += "Pack an umbrella. "; break;
+                    case 'Clouds': innerHTML += "Aw man... "; break;
+                    case 'Clear': innerHTML += "What a beautiful day! "; break;
                     default:
                 }
                 innerHTML += `Today in ${cityName} the weather is: ${weather['description']}.\n`;
