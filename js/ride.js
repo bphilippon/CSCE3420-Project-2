@@ -54,11 +54,8 @@ let map;
         displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.', unicorn.Color);
 
         console.log(pickupLocation);
-
-        //  get the local weather
+        //  get the local weather, find nearby restaurants, movies
         getWeather(pickupLocation)
-
-        //  get an activity for the ryder
         getActivity();
 
         animateArrival(function animateCallback() {
@@ -70,12 +67,23 @@ let map;
         });
     }
 
-    //Retrieves the weather at the pickup location
+    /*
+    function sizzle(loc) {
+        let siz = document.querySelector("#siz").value;
+        let search = siz.substring(siz.indexOf(':')+1);
+        siz = siz.substring(0, siz.indexOf(':'));
+        switch (siz) {
+            case "weather" : weather(search, loc); break;
+            case "apod" : NASA(search); break;
+            case "movies" : movies(search); break ;
+        }
+    }
+     */
     function getWeather(pickupLocation) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=` + process.env.API_KEY)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b63b058240bd999ab442c2e4c79970e6`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -84,8 +92,6 @@ let map;
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
                 let innerHTML = "";
-
-                //Reponds according to the weather
                 switch(weather['0']['main']){
                     case 'Thunderstorm':
                     case 'Drizzle':
@@ -106,7 +112,6 @@ let map;
         .catch(err => alert("An error occurred."))
     }
 
-    //Recommends an activity for the user
     function getActivity() {
         fetch("https://www.boredapi.com/api/activity/")
             .then(response => response.json())
