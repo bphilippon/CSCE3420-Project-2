@@ -54,8 +54,11 @@ let map;
         displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.', unicorn.Color);
 
         console.log(pickupLocation);
-        //  get the local weather, find nearby restaurants, movies
+
+        //  get the local weather
         getWeather(pickupLocation)
+
+        //  get an activity for the ryder
         getActivity();
 
         animateArrival(function animateCallback() {
@@ -67,18 +70,7 @@ let map;
         });
     }
 
-    /*
-    function sizzle(loc) {
-        let siz = document.querySelector("#siz").value;
-        let search = siz.substring(siz.indexOf(':')+1);
-        siz = siz.substring(0, siz.indexOf(':'));
-        switch (siz) {
-            case "weather" : weather(search, loc); break;
-            case "apod" : NASA(search); break;
-            case "movies" : movies(search); break ;
-        }
-    }
-     */
+    //Retrieves the weather at the pickup location
     function getWeather(pickupLocation) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
@@ -92,6 +84,8 @@ let map;
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
                 let innerHTML = "";
+
+                //Reponds according to the weather
                 switch(weather['0']['main']){
                     case 'Thunderstorm':
                     case 'Drizzle':
@@ -110,19 +104,9 @@ let map;
             })
 
         .catch(err => alert("An error occurred."))
-
-        // .then(apod => {
-        //     let media;
-        //     if (apod.media.type == image) {
-        //         let innerHTML = "";
-
-        //     }
-
-
-        //     displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
-        // })
     }
 
+    //Recommends an activity for the user
     function getActivity() {
         fetch("https://www.boredapi.com/api/activity/")
             .then(response => response.json())
