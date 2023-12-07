@@ -126,11 +126,14 @@ let map;
     function getKanye() {
         var quote = "";
         fetch("https://api.kanye.rest")
-            .then(response => quote = response)
-        
-        var innerHTML = "Here is the Kanye quote of the day: ";
-        innerHTML += quote;
-        displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "gray");
+            .then(response => {
+                quote = response;
+                var innerHTML = "Here is the Kanye quote of the day: ";
+                innerHTML += quote;
+                displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "gray");
+            })
+            
+        .catch(err => alert("An error occurred."))
     }
 
     // Register click handler for #request button
