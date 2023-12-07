@@ -125,9 +125,10 @@ let map;
 
     function getActivity() {
         fetch("https://www.boredapi.com/api/activity/")
-            .then(response => {
-                console.log(response);
-                var activity = response;
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var activity = data;
                 var innerHTML = `In case you are bored. We recommend this activity: ${activity['activity']}. `;
                 innerHTML += `It is a ${activity['type']} type of activity, requiring ${activity['participants']} participant(s)`;
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightblue");
