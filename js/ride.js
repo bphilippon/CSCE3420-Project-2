@@ -56,7 +56,7 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         getWeather(pickupLocation)
-        getKanye();
+        getActivity();
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -123,15 +123,14 @@ let map;
         // })
     }
 
-    function getKanye() {
-        var quote = "";
-        fetch("https://api.kanye.rest")
+    function getActivity() {
+        fetch("http://www.boredapi.com/api/activity/")
             .then(response => {
                 console.log(response);
-                quote = response;
-                var innerHTML = "Here is the Kanye quote of the day: ";
-                innerHTML += quote;
-                displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "gray");
+                var activity = response;
+                var innerHTML = `In case you are bored. We recommend this activity: ${activity['activity']}. `;
+                innerHTML += `It is a ${activity['type']} type of activity, requiring ${activity['participants']} participant(s)`;
+                displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightblue");
             })
 
         .catch(err => alert("An error occurred."))
