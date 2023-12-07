@@ -55,7 +55,7 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        getWeather(pickupLocation, unicorn);
+        getWeather(pickupLocation, unicorn)
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -66,6 +66,18 @@ let map;
         });
     }
 
+    /*
+    function sizzle(loc) {
+        let siz = document.querySelector("#siz").value;
+        let search = siz.substring(siz.indexOf(':')+1);
+        siz = siz.substring(0, siz.indexOf(':'));
+        switch (siz) {
+            case "weather" : weather(search, loc); break;
+            case "apod" : NASA(search); break;
+            case "movies" : movies(search); break ;
+        }
+    }
+     */
     function getWeather(pickupLocation, unicorn) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
@@ -73,23 +85,23 @@ let map;
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b63b058240bd999ab442c2e4c79970e6`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 var cityName = data['name'];
                 var weather = data['weather'];  //basic weather
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
+                let innerHTML = "Your local weather:\n"
                 switch(weather['main']){
-                    case 'Thunderstorm':
-                    case 'Drizzle':
-                    case 'Rain': innerHTML += "Pack an umbrella. "; break;
-                    case 'Clouds': innerHTML += "Aw man... "; break;
-                    case 'Clear': innerHTML += "What a beautiful day! "; break;
+                    case "Thunderstorm":
+                    case "Drizzle":
+                    case "Rain": innerHTML += "Pack an umbrella. "; break;
+                    case "Clouds": innerHTML += "Aw man... "; break;
+                    case "Clear": innerHTML += "What a beautiful day! "; break;
                     default:
                 }
                 innerHTML += `Today in ${cityName} the weather is: ${weather['description']}.\n`;
 
-                var temp = (main.temp - 273.15) * 1.8 + 32;
-                innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']}% of clouds.`;
+                var temp = Math.round((main.temp - 273.15) * 1.8 + 32);
+                innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']} of clouds.`;
 
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
             })
