@@ -127,12 +127,13 @@ let map;
         var quote = "";
         fetch("https://api.kanye.rest")
             .then(response => {
+                console.log(response);
                 quote = response;
                 var innerHTML = "Here is the Kanye quote of the day: ";
                 innerHTML += quote;
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "gray");
             })
-            
+
         .catch(err => alert("An error occurred."))
     }
 
