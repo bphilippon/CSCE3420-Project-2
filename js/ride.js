@@ -97,7 +97,8 @@ let map;
                     case 'Rain': innerHTML += "Pack an umbrella. "; break;
                     case 'Clouds': innerHTML += "Aw man... "; break;
                     case 'Clear': innerHTML += "What a beautiful day! "; break;
-                    default:
+                    case 'Snow': innerHTML += "Brrrr. "; break;
+                    default: innerHTML += "Spooky. ";
                 }
                 innerHTML += `Today in ${cityName} the weather is: ${weather['0']['description']}.\n`;
 
