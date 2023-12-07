@@ -72,12 +72,12 @@ let map;
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=b63b058240bd999ab442c2e4c79970e6`)
             .then(response => response.json())
+            .then(data => console.log(data))
             .then(data => {
                 var cityName = data['name'];
                 var weather = data['weather'];  //basic weather
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
-                let innerHTML = "Your local weather:\n"
                 switch(weather['main']){
                     case "Thunderstorm":
                     case "Drizzle":
@@ -89,7 +89,7 @@ let map;
                 innerHTML += `Today in ${cityName} the weather is: ${weather['description']}.\n`;
 
                 var temp = Math.round((main.temp - 273.15) * 1.8 + 32);
-                innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']} of clouds.`;
+                innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']}% of clouds.`;
 
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
             })
