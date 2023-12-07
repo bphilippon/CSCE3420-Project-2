@@ -90,7 +90,7 @@ let map;
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
                 let innerHTML = "Your local weather:\n"
-                switch(weather.main){
+                switch(weather['main']){
                     case "Thunderstorm":
                     case "Drizzle":
                     case "Rain": innerHTML += "Pack an umbrella. "; break;
@@ -98,10 +98,10 @@ let map;
                     case "Clear": innerHTML += "What a beautiful day! "; break;
                     default:
                 }
-                innerHTML += `Today in ${cityName} the weather is: ${weather.description}.\n`;
+                innerHTML += `Today in ${cityName} the weather is: ${weather['description']}.\n`;
 
-                var temp = (main.temp - 273.15) * 1.8 + 32;
-                innerHTML += `The temperature is ${temp} with a ${cloudPercent} of clouds.`;
+                var temp = Math.round((main.temp - 273.15) * 1.8 + 32);
+                innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']} of clouds.`;
 
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
             })
