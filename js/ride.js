@@ -55,7 +55,7 @@ let map;
 
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
-        getWeather(pickupLocation);
+        getWeather(pickupLocation, unicorn);
 
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
@@ -66,7 +66,7 @@ let map;
         });
     }
 
-    function getWeather(pickupLocation) {
+    function getWeather(pickupLocation, unicorn) {
         var lon = pickupLocation.longitude;
         var lat = pickupLocation.latitude;
 
@@ -79,16 +79,16 @@ let map;
                 var main = data['main'];    //complex weather
                 var cloudPercent = data['clouds'];
                 switch(weather['main']){
-                    case "Thunderstorm":
-                    case "Drizzle":
-                    case "Rain": innerHTML += "Pack an umbrella. "; break;
-                    case "Clouds": innerHTML += "Aw man... "; break;
-                    case "Clear": innerHTML += "What a beautiful day! "; break;
+                    case 'Thunderstorm':
+                    case 'Drizzle':
+                    case 'Rain': innerHTML += "Pack an umbrella. "; break;
+                    case 'Clouds': innerHTML += "Aw man... "; break;
+                    case 'Clear': innerHTML += "What a beautiful day! "; break;
                     default:
                 }
                 innerHTML += `Today in ${cityName} the weather is: ${weather['description']}.\n`;
 
-                var temp = Math.round((main.temp - 273.15) * 1.8 + 32);
+                var temp = (main.temp - 273.15) * 1.8 + 32;
                 innerHTML += `The temperature is ${temp} with a ${cloudPercent['all']}% of clouds.`;
 
                 displayUpdate(`<div class="grid-item"> ${innerHTML} </div>`, "lightGreen");
